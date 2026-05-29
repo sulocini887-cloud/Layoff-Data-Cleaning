@@ -11,19 +11,16 @@ LIKE world_layoffs.layoffs;
 
 INSERT layoffs_staging 
 SELECT * FROM world_layoffs.layoffs;
+ 
 
-
--- now when we are data cleaning we usually follow a few steps
 -- 1. check for duplicates and remove any
 -- 2. standardize data and fix errors
 -- 3. Look at null values and see what 
--- 4. remove any columns and rows that are not necessary - few ways
+-- 4. remove any columns and rows that are not necessary
 
 
 
 -- 1. Remove Duplicates
-
-# First let's check for duplicates
 
 
 
@@ -49,6 +46,7 @@ FROM (
 ) duplicates
 WHERE 
 	row_num > 1;
+
     
 -- let's just look at oda to confirm
 SELECT *
@@ -72,7 +70,9 @@ WHERE
 
 -- these are the ones we want to delete where the row number is > 1 or 2or greater essentially
 
+
 -- now you may want to write it like this:
+
 WITH DELETE_CTE AS 
 (
 SELECT *
